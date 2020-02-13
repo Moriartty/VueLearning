@@ -1,9 +1,9 @@
 <template>
     <div class="menu-wrap">
         <el-menu 
-            :default-key="defaultKey"
+            :default-active="defaultKey"
             @select="handleMenuChange"
-            active-text-color="#333">
+            active-text-color="red">
             <template v-for="menu in menuItems">
                 <el-menu-item 
                     :key="menu.id"
@@ -12,6 +12,7 @@
                 </el-menu-item>
             </template>
         </el-menu>
+        <el-button @click="addMenu" type="primary">Add Menu</el-button>
     </div>
 </template>
 <script>
@@ -26,11 +27,13 @@
                 curSideMenu:''
             }
         },
-      
         methods:{
             ...mapMutations({
                 handleMenuChange:"curSideMenuChange"
-            })
+            }),
+            addMenu(){
+                this.$emit('increment',this.$route.params.id);
+            }
         }
     }
 </script>

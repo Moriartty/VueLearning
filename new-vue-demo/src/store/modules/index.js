@@ -35,6 +35,11 @@ export default {
     mutations:{
         curSideMenuChange(state,menu){
             state.curSideMenu = menu
+        },
+        sideMenuIncrement(state,curHeadMenu){
+            let menuCount = state.menuItems[curHeadMenu].length+1;
+            state.menuItems[curHeadMenu].push({id:`${curHeadMenu}-sub${menuCount}`,name:`${curHeadMenu}-sub${menuCount}`});
+            state.contents[`${curHeadMenu}-sub${menuCount}`] = {title:`${curHeadMenu}-sub${menuCount}`,content:`${curHeadMenu}-sub${menuCount} add`}
         }
     }
 }

@@ -1,6 +1,11 @@
 <template>
     <div class="my-header">
-        <span v-for="item in headerItems" :key="item.id" class="my-header-item" @click="routeChange(item.id)">
+        <span 
+            v-for="item in headerItems" 
+            :key="item.id" 
+            class="my-header-item" 
+            :class="item.id===curHead?'my-header-item-active':''"
+            @click="routeChange(item.id)">
             {{item.name}}
         </span>
     </div>
@@ -9,6 +14,12 @@
     export default {
         props:{
             headerItems:Array
+        },
+        computed:{
+            curHead(){
+                
+                return this.$route.params.id;
+            }
         },
         methods:{
             routeChange(id){
@@ -30,6 +41,8 @@
             padding:10px
             font-size 18px
             font-weight:bold
+        .my-header-item-active
+            color:red
 
     
 </style>
